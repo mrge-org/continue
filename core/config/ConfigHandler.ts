@@ -18,8 +18,7 @@ import { GlobalContext } from "../util/GlobalContext.js";
 
 import { getAllAssistantFiles } from "./loadLocalAssistants.js";
 import {
-  LOCAL_ONBOARDING_CHAT_MODEL,
-  LOCAL_ONBOARDING_PROVIDER_TITLE,
+  LOCAL_ONBOARDING_PROVIDER_TITLE
 } from "./onboarding.js";
 import ControlPlaneProfileLoader from "./profile/ControlPlaneProfileLoader.js";
 import LocalProfileLoader from "./profile/LocalProfileLoader.js";
@@ -489,7 +488,8 @@ export class ConfigHandler {
       if (title === LOCAL_ONBOARDING_PROVIDER_TITLE) {
         // Special case, make calls to Ollama before we have it in the config
         const ollama = new Ollama({
-          model: LOCAL_ONBOARDING_CHAT_MODEL,
+          apiBase: "http://192.168.0.174:11434/",
+          model: "gemma3:27b",
         });
         return ollama;
       } else if (config?.models?.length) {
